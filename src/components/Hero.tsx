@@ -1,15 +1,28 @@
+import { useState } from "react";
 import { ArrowRight, Play, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const scrollToDemo = () => {
-    const el = document.getElementById("demo");
-    el?.scrollIntoView({ behavior: "smooth" });
+  const [newsText, setNewsText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+
+  const handleVerify = () => {
+    if (!newsText.trim()) return;
+
+    setLoading(true);
+    setShowResult(false);
+
+    // Simulate AI analysis (mock)
+    setTimeout(() => {
+      setLoading(false);
+      setShowResult(true);
+    }, 1500);
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-radial-glow" />
@@ -33,7 +46,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container-wide relative z-10">
+      <div className="container-wide relative z-10 w-full">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/80 border border-border/50 backdrop-blur-sm mb-8 animate-fade-up">
@@ -57,10 +70,12 @@ const Hero = () => {
             Receive credibility indicators and explanatory insights to support informed judgment.
           </p>
 
-          {/* Input Box */}
+          {/* Input */}
           <div className="max-w-2xl mx-auto mb-8 animate-fade-up">
             <input
               type="text"
+              value={newsText}
+              onChange={(e) => setNewsText(e.target.value)}
               placeholder="Paste a news headline or article link to check credibility..."
               className="w-full px-5 py-4 rounded-xl border border-border/50 bg-background/80 backdrop-blur-sm text-base focus:outline-none focus:ring-2 focus:ring-primary/40"
             />
@@ -69,21 +84,20 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* CTAs */}
+          {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up">
-            {/* Verify News Credibility */}
             <Button
               variant="hero"
               size="xl"
               className="group"
-              onClick={scrollToDemo}
+              onClick={handleVerify}
+              disabled={loading}
             >
               <Shield className="h-5 w-5" />
-              Verify News Credibility
+              {loading ? "Analyzing..." : "Verify News Credibility"}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
 
-            {/* How It Works */}
             <Button asChild variant="heroOutline" size="xl" className="group">
               <Link to="/how-it-works">
                 <Play className="h-4 w-4" />
@@ -92,21 +106,29 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="mt-16 pt-8 border-t border-border/30 animate-fade-up">
-            <p className="text-sm text-muted-foreground mb-4">
-              Designed with responsible AI principles
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-50">
-              <div className="text-sm font-semibold">AI-assisted Analysis</div>
-              <div className="h-4 w-px bg-border hidden sm:block" />
-              <div className="text-sm font-semibold">Source Awareness</div>
-              <div className="h-4 w-px bg-border hidden sm:block" />
-              <div className="text-sm font-semibold">Bias Indicators</div>
-              <div className="h-4 w-px bg-border hidden sm:block" />
-              <div className="text-sm font-semibold">Multi-language Support</div>
+          {/* Result Section */}
+          {showResult && (
+            <div className="mt-20 max-w-3xl mx-auto animate-fade-up">
+              <div className="rounded-2xl border border-border/50 bg-background/80 backdrop-blur-sm p-8 text-center">
+                <h2 className="text-2xl font-semibold mb-4">
+                  Credibility Analysis Result
+                </h2>
+
+                <div className="text-5xl font-bold text-green-500 mb-4">
+                  72%
+                </div>
+
+                <p className="text-lg font-medium mb-2">
+                  Likely Reliable
+                </p>
+
+                <p className="text-muted-foreground">
+                  The content appears mostly factual with neutral language patterns.
+                  Users are encouraged to cross-check with trusted sources.
+                </p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
