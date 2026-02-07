@@ -39,13 +39,13 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/80 border border-border/50 backdrop-blur-sm mb-8 animate-fade-up">
             <Sparkles className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">
-              AI-Powered Truth Verification
+              AI-Assisted News Verification
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 animate-fade-up">
-            AI That Separates{" "}
+            Helping You Distinguish{" "}
             <span className="gradient-text">Truth</span>
             <br />
             From Misinformation
@@ -53,13 +53,25 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up">
-            Analyze news credibility instantly using advanced AI models.
-            Get real-time verification with confidence scores and detailed explanations.
+            Analyze news credibility using AI-assisted techniques.
+            Receive credibility indicators and explanatory insights to support informed judgment.
           </p>
+
+          {/* Input Box */}
+          <div className="max-w-2xl mx-auto mb-8 animate-fade-up">
+            <input
+              type="text"
+              placeholder="Paste a news headline or article link to check credibility..."
+              className="w-full px-5 py-4 rounded-xl border border-border/50 bg-background/80 backdrop-blur-sm text-base focus:outline-none focus:ring-2 focus:ring-primary/40"
+            />
+            <p className="mt-2 text-sm text-muted-foreground">
+              Example: “Breaking: Scientists discover miracle cure…”
+            </p>
+          </div>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up">
-            {/* ✅ Analyze News (SCROLLS) */}
+            {/* Verify News Credibility */}
             <Button
               variant="hero"
               size="xl"
@@ -67,11 +79,11 @@ const Hero = () => {
               onClick={scrollToDemo}
             >
               <Shield className="h-5 w-5" />
-              Analyze News
+              Verify News Credibility
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
 
-            {/* ✅ How It Works (PAGE NAVIGATION — KEEP SAME) */}
+            {/* How It Works */}
             <Button asChild variant="heroOutline" size="xl" className="group">
               <Link to="/how-it-works">
                 <Play className="h-4 w-4" />
@@ -83,16 +95,16 @@ const Hero = () => {
           {/* Trust Indicators */}
           <div className="mt-16 pt-8 border-t border-border/30 animate-fade-up">
             <p className="text-sm text-muted-foreground mb-4">
-              Trusted by researchers worldwide
+              Designed with responsible AI principles
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8 opacity-50">
-              <div className="text-sm font-semibold">98.5% Accuracy</div>
+              <div className="text-sm font-semibold">AI-assisted Analysis</div>
               <div className="h-4 w-px bg-border hidden sm:block" />
-              <div className="text-sm font-semibold">500K+ Analyses</div>
+              <div className="text-sm font-semibold">Source Awareness</div>
               <div className="h-4 w-px bg-border hidden sm:block" />
-              <div className="text-sm font-semibold">Real-time Results</div>
+              <div className="text-sm font-semibold">Bias Indicators</div>
               <div className="h-4 w-px bg-border hidden sm:block" />
-              <div className="text-sm font-semibold">50+ Languages</div>
+              <div className="text-sm font-semibold">Multi-language Support</div>
             </div>
           </div>
         </div>
